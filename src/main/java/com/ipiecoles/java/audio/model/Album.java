@@ -1,9 +1,6 @@
 package com.ipiecoles.java.audio.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Album {
@@ -17,7 +14,9 @@ public class Album {
 
     private Long artistId;
 
-
+    @ManyToOne
+    @JoinColumn(name="id", nullable = false)
+    private Artist artist;
 
     public Long getAlbumId() {
         return albumId;

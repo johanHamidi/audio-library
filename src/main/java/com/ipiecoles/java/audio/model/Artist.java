@@ -1,9 +1,8 @@
 package com.ipiecoles.java.audio.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 
 @Entity
 public class Artist {
@@ -14,6 +13,9 @@ public class Artist {
 
     private String name;
 
+    @OneToMany(mappedBy = "artiste")
+    //Eviter boucle infini
+    @JsonIgnoreProperties("artiste")
 
     public Long getId() {
         return id;

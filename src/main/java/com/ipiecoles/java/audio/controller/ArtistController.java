@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.QPageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +33,6 @@ public class ArtistController {
         public Artist getArtistById(@PathVariable("id") Long id){
                 //Affiche les informations du commercial d'identifiant id
                 Optional<Artist> a = artistRepository.findById(id);
-
                 if(a.isPresent()){
                         return a.get();
                 }
@@ -70,5 +70,15 @@ public class ArtistController {
         }
 
         //5éme question
+        @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+        public Artist ModifyArtist(@PathVariable("id") Long idEmploye,@RequestBody Artist artist){
+                return artistRepository.save(artist);
+        }
 
+        //6éme question
+        @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+        @ResponseStatus(HttpStatus.NO_CONTENT)
+        public void deleteArtist(@PathVariable("id") Long id){
+                artistRepository.deleteById(id);
+        }
 }
