@@ -3,29 +3,35 @@ package com.ipiecoles.java.audio.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name="album")
 public class Album {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long albumId;
+    private Integer id;
 
     private String title;
 
-    private Long artistId;
+
+    public Album(Integer id, String title, Artist artist) {
+        this.id = id;
+        this.title = title;
+        this.artist = artist;
+    }
 
     @ManyToOne
-    @JoinColumn(name="id", nullable = false)
+    @JoinColumn(name="artistId", nullable = false)
     private Artist artist;
 
-    public Long getAlbumId() {
-        return albumId;
+    public Album(){}
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setAlbumId(Long albumId) {
-        this.albumId = albumId;
+    public void setId(Integer id) {
+        this.id = id;
     }
-
 
     public String getTitle() {
         return title;
@@ -35,14 +41,12 @@ public class Album {
         this.title = title;
     }
 
-    public Long getArtistId() {
-        return artistId;
+    public Artist getArtist() {
+        return artist;
     }
 
-    public void setArtistId(Long artistId) {
-        this.artistId = artistId;
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
-
-
 
 }

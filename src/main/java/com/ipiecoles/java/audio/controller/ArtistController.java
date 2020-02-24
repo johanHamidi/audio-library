@@ -17,10 +17,7 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
-/* Gérer exceptions
-throws EntityConflictException
-throw new EntityConflictException("ghfgh");
-*/
+
 @RestControllerAdvice
 @RequestMapping("/artists")
 public class ArtistController {
@@ -29,7 +26,7 @@ public class ArtistController {
         private ArtistRepository artistRepository;
 
         //1ére question
-        @RequestMapping("/{id}")
+        @RequestMapping(value = "/{id}", method = RequestMethod.GET)
         public Artist getArtistById(@PathVariable("id") Long id){
                 //Affiche les informations du commercial d'identifiant id
                 Optional<Artist> a = artistRepository.findById(id);
